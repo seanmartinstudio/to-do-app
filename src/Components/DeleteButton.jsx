@@ -2,7 +2,7 @@ import React from 'react'
 
 const DeleteButton = () => {
   return (
-    <div>DeleteButton</div>
+    <button class="border-solid border-2 border-black rounded-md px-px py-px">Delete</button>
   )
 }
 

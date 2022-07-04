@@ -1,8 +1,12 @@
 import React from 'react'
+import DeleteButton from './DeleteButton'
 
 const Container = () => {
   return (
-    <div class="flex rounded-lg border-black box-size h-32 w-32 p-4 border-8 justify-center ">Container</div>
+    <div class="w-full h-full border-dashed border-black border-2">
+        <h1>Container</h1>
+        <DeleteButton></DeleteButton>
+    </div>
   )
 }
 
