@@ -1,11 +1,12 @@
 import React from 'react'
-import Container from './Container'
+import AddToDo from './AddToDo'
+
 
 const App = () => {
   return (
     <div>
-        <h1>App</h1>
-        <Container></Container>
+        <h1>To Do App</h1>
+        <AddToDo></AddToDo>
     </div>
   )
 }
