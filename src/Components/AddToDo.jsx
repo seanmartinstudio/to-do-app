@@ -1,49 +1,63 @@
 import React from 'react'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import axios from 'axios'
 
+ const toDoInitialState = {
+    name: "",
+    category_id: null,
+    complete: false
+ }
+
+ const categoryInitialState = {
+    name: ""
+ }
 
 const AddToDo = () => {
 
-// State to create controlled form
-const [toDo, setToDo] = useState("")
-const [category, setCategory] = useState("")
+// To Do State
+const [toDo, setToDo] = useState(toDoInitialState)
+// Category State
+const [category, setCategory] = useState(categoryInitialState)
 
 // To Do onChange
 const handleToDo = (event) => {
-    event.preventDefault()
-    setToDo(event.target.value)
+    setToDo({
+        ...toDoInitialState,
+        name: event.target.value
+    })
     console.log("To Do onChange =>", toDo)
 }
 
 // Category onChange
 const handleCategory = (event) => {
-    setCategory(event.target.value)
+    setCategory({
+        ...categoryInitialState,
+        name: event.target.value
+    })
     console.log("Category onChange =>", category)
 }
 
-// To Do and Category onSubmit (add API post here)
+// To Do and Category onSubmit to API
 const handleSubmit = (event) => {
     event.preventDefault()
-    console.log("To Do onSubmit =>", toDo)
+    axios.post('http://localhost:9292/add_category', category)
+    .then(() => setCategory(categoryInitialState))
     console.log("Category onSubmit =>", category)
+    // axios.post('http://localhost:9292/add_todo', toDo)
+    // .then(() => setToDo(toDoInitialState))
+    // console.log("To Do onSubmit =>", toDo)
 }
 
   return (
-    <div>
-        <form onSubmit={handleSubmit} className="flex justify-center">
+    <div className='py-8'>
+        <form onSubmit={handleSubmit} className="flex justify-center ">
 
-            <input onChange={handleToDo} value={toDo} type='text' className="resize-none rounded-md border-solid border-2 border-black" ></input>
+            <label className='px-2'>To Do</label>
+            <input onChange={handleToDo} type='text' name='To Do' className="resize-none rounded-md border-solid border-2 border-black"></input>
+            <label className='px-2'>Category</label>
+            <input onChange={handleCategory} type='text' className="resize-none rounded-md border-solid border-2 border-black"></input>
 
-            {/* <textarea onChange={handleCategory} type='text'className="resize-none rounded-md border-solid border-2 border-black" ></textarea> */}
-
-            <select onChange={handleCategory} name="categories" className="resize-none rounded-md border-solid border-2 border-black">
-                <option value="none">Categories</option>
-                <option value="Work">Work</option>
-                <option value="Personal">Personal</option>
-                <option name="Education">Education</option>
-            </select>
-
-            <button type='submit' class="border-solid border-2 border-black rounded-md">Add</button>
+            <button type='submit' class="ml-2 border-solid border-2 border-black rounded-md">Add</button>
 
         </form>
     </div>
