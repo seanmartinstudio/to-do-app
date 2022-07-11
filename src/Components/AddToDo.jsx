@@ -2,12 +2,14 @@ import React from 'react'
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 
+// To Do Initial State
  const toDoInitialState = {
     name: "",
     category_id: null,
     complete: false
  }
 
+ // Category Initial State
  const categoryInitialState = {
     name: ""
  }
@@ -40,12 +42,12 @@ const handleCategory = (event) => {
 // To Do and Category onSubmit to API
 const handleSubmit = (event) => {
     event.preventDefault()
-    axios.post('http://localhost:9292/add_category', category)
+    axios.post('http://localhost:9292/categories', category)
     .then(() => setCategory(categoryInitialState))
     console.log("Category onSubmit =>", category)
-    // axios.post('http://localhost:9292/add_todo', toDo)
-    // .then(() => setToDo(toDoInitialState))
-    // console.log("To Do onSubmit =>", toDo)
+    axios.post('http://localhost:9292/todos', toDo)
+    .then(() => setToDo(toDoInitialState))
+    console.log("To Do onSubmit =>", toDo)
 }
 
   return (
