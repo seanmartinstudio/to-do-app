@@ -1,11 +1,18 @@
 import React from 'react'
+import ToDo from './ToDo'
 
 const ToDos = ( {toDoData} ) => {
 
-    console.log("toDoData", toDoData)
+const listToDoData = toDoData.map((toDo) => (
+   <ToDo name={toDo.name}/>
+))
+
   return (
-    <div className="flex justify-center ">
-        <h3>To Dos:</h3>
+    <div>
+        <h3 className="flex justify-center ">To Dos:</h3>
+        <ul>
+        {listToDoData}
+        </ul>
     </div>
   )
 }

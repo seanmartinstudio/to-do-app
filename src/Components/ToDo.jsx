@@ -1,8 +1,9 @@
 import React from 'react'
 
-const ToDo = () => {
+const ToDo = ( {name, key}) => {
+
   return (
-    <div>ToDo</div>
+    <h4 className="flex justify-center ">{name}</h4>
   )
 }
 
