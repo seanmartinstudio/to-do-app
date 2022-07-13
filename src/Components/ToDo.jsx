@@ -1,9 +1,9 @@
 import React from 'react'
 
-const ToDo = ( {name, key}) => {
+const ToDo = ( {name}) => {
 
   return (
-    <h4 className="flex justify-center ">{name}</h4>
+    <h4 className="flex justify-center">{name}</h4>
   )
 }
 

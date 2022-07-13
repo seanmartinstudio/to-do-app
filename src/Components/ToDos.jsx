@@ -3,15 +3,16 @@ import ToDo from './ToDo'
 
 const ToDos = ( {toDoData} ) => {
 
-const listToDoData = toDoData.map((toDo) => (
-   <ToDo name={toDo.name}/>
+// Renders To Dos to page
+const toDoItems = toDoData.map((toDo) => (
+   <ToDo name={toDo.name} key={toDo.id} />
 ))
 
   return (
     <div>
-        <h3 className="flex justify-center ">To Dos:</h3>
+        <h3 className="flex justify-center font-bold">To Dos:</h3>
         <ul>
-        {listToDoData}
+        {toDoItems}
         </ul>
     </div>
   )
