@@ -10,6 +10,7 @@ const App = () => {
 
   const [toDoData, setToDoData] = useState([])
 
+ // fix this Fetch! 
   const postToApi = (event, toDo, category ) => {
     axios.post('http://localhost:9292/categories-todos', {
       to_do_name: toDo,
@@ -17,12 +18,18 @@ const App = () => {
       complete: false
     })
     .then(function (response) {
-      console.log(response);
+      setToDoData(toDoData.concat({
+        name: response.data.name,
+        category_id: response.data.category_id,
+        complete: response.data.complete
+      }))
     })
     .catch(function (error) {
       console.log(error);
     });
-  }
+    }
+
+    
 
   useEffect(() => {
     fetch('http://localhost:9292/todos')
