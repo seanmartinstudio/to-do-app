@@ -4,10 +4,9 @@ import axios from 'axios'
 
 const ToDo = ( {name, key, id, category_id, complete, toDoData, setToDoData} ) => {
 
-    const [deleteButton, setDeleteButton] = useState("")
-
     const [completeCheckBox, setCompleteCheckBox] = useState("")
 
+    //Deletes To Do from UI
     const handleDeleteUI = (id) => {
       const newArr = toDoData.filter((toDo) => {
         if(toDo.id !== id) {
@@ -16,21 +15,29 @@ const ToDo = ( {name, key, id, category_id, complete, toDoData, setToDoData} ) =
       setToDoData(newArr)
     }
 
+    //Deletes To Do from API
     const handleDeleteButton = (event) => {
         axios.delete('http://localhost:9292/todos/' + id)
           .then(() => handleDeleteUI(id))
     }
     
-    const handleComplete = (event) => {
-        console.log(id)
-        // setCompleteCheckBox(event.target.checked)
-        //if complete === true, change complete API value to true and update state
-        //else, complete API value === false
+
+    const handleCheckBoxUI = (id) => {
+
     }
 
-    // useEffect(() => console.log(complete),[complete])
-
-
+    const handleComplete = (event) => {
+      // console.log(event.target.checked)
+      //   if (event.target.checked === true) {
+      //     complete = true
+      //   }
+      //   else {
+      //     complete = false
+      //   }
+        axios.patch('http://localhost:9292/todos/' + id, {
+          complete: event.target.checked
+        })
+    }
 
   return (
     <div className="flex justify-center px-8">
@@ -45,5 +52,8 @@ const ToDo = ( {name, key, id, category_id, complete, toDoData, setToDoData} ) =
 export default ToDo
 
 
-//Need to update state after Delete (use filter method in handleDeleteUI to remove obj from state)
+
 //Need to build out check box for Complete boolean (event.target.checked returns T or F)
+
+
+// use boolean of event.target.checkbox to persist checkbox ui
