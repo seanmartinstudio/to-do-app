@@ -10,7 +10,7 @@ const App = () => {
 
   const [toDoData, setToDoData] = useState([])
 
- // fix this Fetch! 
+  // POST, submits new To Dos and updates state
   const postToApi = (event, toDo, category ) => {
     axios.post('http://localhost:9292/categories-todos', {
       to_do_name: toDo,
@@ -23,14 +23,10 @@ const App = () => {
         category_id: response.data.category_id,
         complete: response.data.complete
       }))
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
-    }
+    })}
 
     
-
+  // GET, renders To Dos to UI when page mounts
   useEffect(() => {
     fetch('http://localhost:9292/todos')
     .then((response) => response.json())
@@ -40,7 +36,7 @@ const App = () => {
   return (
     <div>
         <AddToDo postToApi={postToApi}/>
-        <ToDos toDoData={toDoData}/>
+        <ToDos toDoData={toDoData} setToDoData={setToDoData}/>
     </div>
   )
 }
@@ -48,6 +44,5 @@ const App = () => {
 export default App
 
 
-// Make Get Request for To Do's in App component
-// Pass data from To Do's down to To Do's componenent
-// Create
+//Path To Dos
+//Delete To Dos

@@ -11,22 +11,10 @@ const [toDo, setToDo] = useState("")
 // Category State
 const [category, setCategory] = useState("")
 
-// To Do and Category onSubmit to API
+// onSubmit envokes API Post in App componenet
 const handleSubmit = (event) => {
     event.preventDefault()
     postToApi(event, toDo, category)
-    // axios.post('http://localhost:9292/categories-todos', {
-    //     to_do_name: toDo,
-    //     category_name: category,
-    //     complete: false
-    //   })
-    //   .then(function (response) {
-    //     console.log(response);
-    //   })
-    //   .catch(function (error) {
-    //     console.log(error);
-    //   });
- 
 }
 
   return (
