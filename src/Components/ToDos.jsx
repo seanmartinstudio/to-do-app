@@ -10,7 +10,7 @@ const ToDos = ( {toDoData, setToDoData} ) => {
 
 // Renders To Dos to page
 const toDoItems = toDoData.map((toDo) => (
-   <ToDo name={toDo.name} key={toDo.id} id={toDo.id} category_id={toDo.category_id} complete={toDo.complete}  />
+   <ToDo name={toDo.name} key={toDo.id} id={toDo.id} category_id={toDo.category_id} complete={toDo.complete} toDoData={toDoData} setToDoData={setToDoData}  />
 ))
 
   return (

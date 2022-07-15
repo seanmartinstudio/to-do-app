@@ -2,22 +2,23 @@ import React from 'react'
 import { useState, useEffect} from 'react'
 import axios from 'axios'
 
-const ToDo = ( {name, key, id, category_id, complete} ) => {
+const ToDo = ( {name, key, id, category_id, complete, toDoData, setToDoData} ) => {
 
     const [deleteButton, setDeleteButton] = useState("")
 
     const [completeCheckBox, setCompleteCheckBox] = useState("")
 
-    
+    const handleDeleteUI = (id) => {
+      const newArr = toDoData.filter((toDo) => {
+        if(toDo.id !== id) {
+          return id
+        }})
+      setToDoData(newArr)
+    }
 
     const handleDeleteButton = (event) => {
         axios.delete('http://localhost:9292/todos/' + id)
-          .then(function (response) {
-            console.log(response);
-          })
-          .catch(function (error) {
-            console.log(error);
-          });
+          .then(() => handleDeleteUI(id))
     }
     
     const handleComplete = (event) => {
@@ -44,5 +45,5 @@ const ToDo = ( {name, key, id, category_id, complete} ) => {
 export default ToDo
 
 
-//Need to update state after Delete
+//Need to update state after Delete (use filter method in handleDeleteUI to remove obj from state)
 //Need to build out check box for Complete boolean (event.target.checked returns T or F)
