@@ -23,17 +23,10 @@ const ToDo = ( {name, key, id, category_id, complete, toDoData, setToDoData} ) =
     
 
     const handleCheckBoxUI = (id) => {
-
+      //build out function to persis checkbox on rerender
     }
 
     const handleComplete = (event) => {
-      // console.log(event.target.checked)
-      //   if (event.target.checked === true) {
-      //     complete = true
-      //   }
-      //   else {
-      //     complete = false
-      //   }
         axios.patch('http://localhost:9292/todos/' + id, {
           complete: event.target.checked
         })
@@ -53,7 +46,6 @@ export default ToDo
 
 
 
-//Need to build out check box for Complete boolean (event.target.checked returns T or F)
 
-
+// need to persist beckbox on page rerender
 // use boolean of event.target.checkbox to persist checkbox ui
