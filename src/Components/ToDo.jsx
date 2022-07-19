@@ -37,8 +37,8 @@ const ToDo = ( {name, key, id, category_id, complete, toDoData, setToDoData} ) =
     }
 
   return (
-    <div className="flex content-center px-8">
-        <h4>{name}</h4>
+    <div className="flex justify-center py-4 ">
+        <h4 className='font-semibold'>{name}</h4>
         <br></br>
         {taskComplete
           ? <button onClick={(event) => changeToIncomplete(event)} className="ml-2 border-solid border-2 border-black rounded-md">Complete</button>

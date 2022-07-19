@@ -35,6 +35,7 @@ const App = () => {
 
   return (
     <div>
+        <h1 className='text-2xl flex justify-center pt-4 '>To Do App</h1>
         <AddToDo postToApi={postToApi}/>
         <ToDos toDoData={toDoData} setToDoData={setToDoData}/>
     </div>

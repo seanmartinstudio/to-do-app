@@ -15,7 +15,7 @@ const toDoItems = toDoData.map((toDo) => (
 
   return (
     <div>
-        <h3 className="flex justify-center font-bold">To Dos:</h3>
+        <h2 className="flex justify-center text-lg">To Dos:</h2>
         <ul>
             {toDoItems}
         </ul>
