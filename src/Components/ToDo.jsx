@@ -2,7 +2,7 @@ import React from 'react'
 import { useState, useEffect} from 'react'
 import axios from 'axios'
 
-const ToDo = ( {name, key, id, category_id, complete, toDoData, setToDoData} ) => {
+const ToDo = ( {name, id, category_id, complete, toDoData, setToDoData} ) => {
 
     //State for Complete UI
     const[taskComplete, setTaskComplete] = useState(complete)
@@ -39,7 +39,7 @@ const ToDo = ( {name, key, id, category_id, complete, toDoData, setToDoData} ) =
     }
 
   return (
-    <div className="flex justify-center py-4 ">
+    <div className="flex justify-center py-4">
         <h4 className='font-semibold'>{name}</h4>
         <br></br>
         {taskComplete
@@ -52,8 +52,3 @@ const ToDo = ( {name, key, id, category_id, complete, toDoData, setToDoData} ) =
 }
 
 export default ToDo
-
-
-
-
-//conditionally render checkbox element based on complete value T or F
