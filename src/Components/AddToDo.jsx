@@ -2,12 +2,11 @@ import React from 'react'
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 
-
-
 const AddToDo = ( {postToApi} ) => {
 
 // To Do State
 const [toDo, setToDo] = useState("")
+
 // Category State
 const [category, setCategory] = useState("")
 

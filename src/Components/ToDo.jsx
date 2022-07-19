@@ -22,6 +22,7 @@ const ToDo = ( {name, key, id, category_id, complete, toDoData, setToDoData} ) =
           .then(() => handleDeleteUI(id))
     }
 
+    //Changes complete API and UI to 'incomplete'
     const changeToIncomplete = () => {
       axios.patch('http://localhost:9292/todos/' + id, {
         complete: false
@@ -29,6 +30,7 @@ const ToDo = ( {name, key, id, category_id, complete, toDoData, setToDoData} ) =
       .then(response => setTaskComplete(response.data.complete))
     }
 
+    //Changes complete API and UI to 'complete'
     const changeToComplete = () => {
       axios.patch('http://localhost:9292/todos/' + id, {
         complete: true

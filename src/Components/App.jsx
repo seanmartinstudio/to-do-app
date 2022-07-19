@@ -4,8 +4,6 @@ import ToDos from './ToDos'
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 
-
-
 const App = () => {
 
   const [toDoData, setToDoData] = useState([])
