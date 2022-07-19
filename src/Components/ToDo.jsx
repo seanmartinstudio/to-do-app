@@ -4,9 +4,10 @@ import axios from 'axios'
 
 const ToDo = ( {name, key, id, category_id, complete, toDoData, setToDoData} ) => {
 
-    const [completeCheckBox, setCompleteCheckBox] = useState("")
+    //State for Complete UI
+    const[taskComplete, setTaskComplete] = useState(complete)
 
-    //Deletes To Do from UI
+    //Deletes 'To Do' from UI
     const handleDeleteUI = (id) => {
       const newArr = toDoData.filter((toDo) => {
         if(toDo.id !== id) {
@@ -15,28 +16,34 @@ const ToDo = ( {name, key, id, category_id, complete, toDoData, setToDoData} ) =
       setToDoData(newArr)
     }
 
-    //Deletes To Do from API
+    //Deletes 'To Do' from API
     const handleDeleteButton = (event) => {
         axios.delete('http://localhost:9292/todos/' + id)
           .then(() => handleDeleteUI(id))
     }
-    
 
-    const handleCheckBoxUI = (id) => {
-      //build out function to persis checkbox on rerender
+    const changeToIncomplete = () => {
+      axios.patch('http://localhost:9292/todos/' + id, {
+        complete: false
+      })
+      .then(response => setTaskComplete(response.data.complete))
     }
 
-    const handleComplete = (event) => {
-        axios.patch('http://localhost:9292/todos/' + id, {
-          complete: event.target.checked
-        })
+    const changeToComplete = () => {
+      axios.patch('http://localhost:9292/todos/' + id, {
+        complete: true
+      })
+      .then(response => setTaskComplete(response.data.complete))
     }
 
   return (
-    <div className="flex justify-center px-8">
-        <input onClick={(event) => handleComplete(event)} type='checkbox' value='complete' className="ml-2 border-solid border-2 border-black rounded-md"></input>
+    <div className="flex content-center px-8">
         <h4>{name}</h4>
         <br></br>
+        {taskComplete
+          ? <button onClick={(event) => changeToIncomplete(event)} className="ml-2 border-solid border-2 border-black rounded-md">Complete</button>
+          : <button onClick={(event) => changeToComplete(event)} className="ml-2 border-solid border-2 border-black rounded-md">Incomplete</button>
+        }
         <button onClick={(event) => handleDeleteButton(event)} className="ml-2 border-solid border-2 border-black rounded-md">Delete</button>
     </div>
   )
@@ -47,5 +54,4 @@ export default ToDo
 
 
 
-// need to persist beckbox on page rerender
-// use boolean of event.target.checkbox to persist checkbox ui
+//conditionally render checkbox element based on complete value T or F

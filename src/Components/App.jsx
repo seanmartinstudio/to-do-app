@@ -31,7 +31,7 @@ const App = () => {
     fetch('http://localhost:9292/todos')
     .then((response) => response.json())
     .then((data) => setToDoData(data))
-  }, [])
+  }, [toDoData])
 
   return (
     <div>
